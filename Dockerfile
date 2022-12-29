@@ -16,10 +16,11 @@
 #   limitations under the License.
 
 
-ARG GO_VERSION=1.16.3-alpine
-ARG CLI_VERSION=20.10.2
-ARG ALPINE_VERSION=3.12.2
-ARG GOLANGCI_LINT_VERSION=v1.33.0-alpine
+ARG GO_VERSION
+ARG CLI_VERSION
+ARG ALPINE_VERSION
+ARG GOLANGCI_LINT_VERSION
+ARG LTAG_VERSION
 
 ####
 # BUILDER
@@ -58,7 +59,7 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
 FROM builder AS validate-headers
 RUN --mount=type=cache,target=/root/.cache/go-build \
     --mount=type=cache,target=/go/pkg \
-    go get -u github.com/kunalkushwaha/ltag && ./scripts/validate/fileheader
+    go get -u github.com/kunalkushwaha/ltag@${LTAG_VERSION} && ./scripts/validate/fileheader
 
 ####
 # CHECK GO MOD
@@ -132,7 +133,7 @@ RUN apk add --no-cache \
     wget
 # install gotestsum
 WORKDIR /root
-ARG GOTESTSUM_VERSION=0.6.0
+ARG GOTESTSUM_VERSION
 RUN wget https://github.com/gotestyourself/gotestsum/releases/download/v${GOTESTSUM_VERSION}/gotestsum_${GOTESTSUM_VERSION}_linux_amd64.tar.gz -nv -O - | tar -xz
 
 ####

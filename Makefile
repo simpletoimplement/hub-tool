@@ -22,6 +22,7 @@ BUILD_ARGS:=--build-arg GO_VERSION=$(GO_VERSION) \
     --build-arg GOLANGCI_LINT_VERSION=$(GOLANGCI_LINT_VERSION) \
     --build-arg TAG_NAME=$(TAG_NAME) \
     --build-arg GOTESTSUM_VERSION=$(GOTESTSUM_VERSION) \
+    --build-arg LTAG_VERSION=$(LTAG_VERSION) \
     --build-arg BINARY_NAME=$(BINARY_NAME) \
     --build-arg BINARY=$(BINARY)
 
